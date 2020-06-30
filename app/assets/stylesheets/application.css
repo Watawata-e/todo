@@ -13,6 +13,9 @@ table {
 table, th, td {
 	border: 1px solid #bbb;
 }
+th {
+	background-color: lightgreen;
+}
 .finish {
 	width: 100px;
 }

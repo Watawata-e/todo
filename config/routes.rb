@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root "top#index"
+  root "lists#index"
+  post "lists", controller: "lists", action: "create"
+
+  resource :lists
 end

@@ -1,0 +1,31 @@
+<h1>やることリスト</h1>
+<% if @lists.present? %>
+	<table>
+		<tr>
+			<th class="finish">達成</th>
+			<th class="text">内容</th>
+			<th class="deadline">締め切り</th>
+		</tr>
+		<% @lists.each do |list| %>
+			<tr>
+				<td><%= list.finish %></td>
+				<td><%= list.text %></td>
+				<td><%= list.deadline_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+			</tr>
+		<% end %>
+	</table>
+	<%= form_for @list, :url => { action: "create" } do |form| %>
+		<table>
+			<tr>
+				<th><%= form.label :text, "内容" %></th>
+				<td><%= form.text_field :text %></td>
+			</tr>
+			<tr>
+				<th><%= form.label :deadline_at, "締め切り" %></th>
+				<td><%= form.datetime_field :deadline_at %></td>
+			</tr>
+		</table>
+		<%= form.submit %>
+	<% end %>
+
+<% end %>
