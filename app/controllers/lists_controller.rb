@@ -9,20 +9,31 @@ class ListsController < ApplicationController
 	# newもなし？
 
 	def edit
+		@list = List.find(params[:id])
 	end
 
 	def create
 		@list = List.new(params[:list])
 		if @list.save
-			redirect_to({ action: :index }, notice: 'やることリストを追加しました')
+			redirect_to :root, notice: 'やることリストを追加しました'
 		else
-			ridirect_to({ action: :index }, notice: 'やることリストを追加できませんでした')
+			ridirect_to :root, notice: 'やることリストを追加できませんでした'
 		end
 	end
 
 	def update
+		@list = List.find(params[:id])
+		@list.assign_attributes(params[:list])
+		if @list.save
+			redirect_to :root, notice: 'やることリストを編集しました'
+		else
+			redirect_to [:edit, @list], notice: 'やることリストを編集できませんでした'
+		end
 	end
 
-	def destory
+	def destroy
+		@list = List.find(params[:id])
+		@list.destroy
+		redirect_to :root, notice: 'やることリストを削除しました'
 	end
 end

@@ -1,0 +1,13 @@
+<%= form_for @list do |form| %>
+<table>
+	<tr>
+		<th><%= form.label :text, "内容" %></th>
+		<td><%= form.text_field :text %></td>
+	</tr>
+	<tr>
+		<th><%= form.label :deadline_at, "締め切り" %></th>
+		<td><%= form.datetime_field :deadline_at %></td>
+	</tr>
+</table>
+<%= form.submit %>
+<% end %>
